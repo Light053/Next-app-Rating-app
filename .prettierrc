@@ -10,7 +10,7 @@
         "parser": "css",
         "bracketSpacing": true,
         "insertPragma": false,
-        "semi": true,
+        "semi": false,
         "arrowParens": "always",
         "quoteProps": "as-needed"
       }

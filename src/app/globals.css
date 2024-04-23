@@ -1,0 +1,23 @@
+* {
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+:root {
+  --black-color: black;
+  --white-color: white;
+  --gray-light-color: #ebebeb;
+  --primary-color: purple;
+  --red-color: rgb(255, 96, 96);
+  --gren-color: green;
+  --green-light-color: rgb(126, 255, 126);
+
+  --primary-hover-color: rgb(153, 0, 153);
+}
+
+body {
+  height: 100vh;
+  color: var(--black-color);
+  background: #f5f6f8;
+}
