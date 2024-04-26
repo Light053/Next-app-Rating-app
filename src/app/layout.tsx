@@ -1,6 +1,11 @@
 import { Noto_Sans } from 'next/font/google';
 import './globals.css';
 import { Metadata } from 'next';
+import { Header } from '../components/Header/Header';
+import { Footer } from '../components/Footer/Footer';
+import { Sidebar } from '../components/Sidebar/Sidebar';
+import styles from './page.module.scss';
+
 const notoSans = Noto_Sans({
   weight: ['300', '400', '700', '500'],
   style: 'normal',
@@ -17,7 +22,14 @@ export default function RootLayout({
 }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en">
-      <body className={notoSans.className}>{children}</body>
+      <body className={notoSans.className}>
+        <div className={styles.wrapper}>
+          <Header className={styles.header} />
+          <Sidebar className={styles.sidebar} />
+          <div className={styles.body}>{children}</div>
+          <Footer className={styles.footer} />
+        </div>
+      </body>
     </html>
   );
 }

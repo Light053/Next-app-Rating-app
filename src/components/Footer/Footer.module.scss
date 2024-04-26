@@ -1,0 +1,34 @@
+.Footer {
+  background: var(--footer-color);
+  display: grid;
+  grid-template-columns: 1fr auto auto;
+  padding: 25px 30px;
+  gap: 10px 40px;
+
+  color: var(--white-color);
+  font-size: 16px;
+  line-height: 24px;
+}
+
+.policy {
+  text-decoration: none;
+  color: var(--white-color);
+}
+
+.law {
+  text-decoration: none;
+  color: var(--white-color);
+}
+
+.law,
+.policy {
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+@media (max-width: 765px) {
+  .Footer {
+    grid-template-columns: 1fr;
+  }
+}
