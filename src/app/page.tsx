@@ -2,15 +2,13 @@
 
 import { classNames } from '@/utils/classnames/classnames';
 import styles from './page.module.scss';
-import { Rating } from '../components';
+import { Button } from '../components';
 import { useState } from 'react';
+import { ButtonThemes } from '../components/Button/Button';
+import { usePathname } from 'next/navigation';
 
-export default function Home(): JSX.Element {
+export default function Home() {
   const [rating, setRating] = useState<number>(0);
 
-  return (
-    <div className={classNames(styles.page, {}, [])}>
-      <Rating rating={rating} setRating={setRating} isEditable={true} />
-    </div>
-  );
+  return <div className={classNames(styles.page, {}, [])}></div>;
 }

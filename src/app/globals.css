@@ -1,13 +1,14 @@
 * {
   margin: 0;
   padding: 0;
-  overflow: hidden;
 }
 
 :root {
   --black-color: black;
   --white-color: white;
   --gray-light-color: #ebebeb;
+  --gray-dark-color: #787d85;
+
   --primary-color: purple;
   --red-color: rgb(255, 96, 96);
   --gren-color: green;
