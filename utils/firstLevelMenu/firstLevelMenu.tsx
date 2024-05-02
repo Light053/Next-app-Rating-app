@@ -1,7 +1,7 @@
-import ServiceIcon from '@/src/assets/Cloud.svg?svgr';
-import CoursesIcon from '@/src/assets/Courses.svg?svgr';
-import BookIcon from '@/src/assets/Book.svg?svgr';
-import ProductIcon from '@/src/assets/Product.svg?svgr';
+import ServiceIcon from '@/utils/assets/Cloud.svg?svgr';
+import CoursesIcon from '@/utils/assets/Courses.svg?svgr';
+import BookIcon from '@/utils/assets/Book.svg?svgr';
+import ProductIcon from '@/utils/assets/Product.svg?svgr';
 import {
   FirstLevelMenuItem,
   TopLevelCategory,

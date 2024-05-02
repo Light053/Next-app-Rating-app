@@ -4,22 +4,25 @@ import { TopPageModel } from '@/interfaces/topPage.interface';
 import axios from 'axios';
 import { notFound } from 'next/navigation';
 
-export const getMenu = async () => {
-  const firstCategory = 0;
+export const getMenu = async (firstCategory = 0) => {
   const { data: menu } = await axios.post<IMenu[]>(
     `${process.env.NEXT_PUBLIC_DOMAIN}/api/top-page/find`,
     {
-      firstCategory,
+      firstCategory: firstCategory,
     }
   );
   return menu;
 };
 
 export const getPage = async (alias: string) => {
-  const { data: page } = await axios.get<TopPageModel>(
-    `${process.env.NEXT_PUBLIC_DOMAIN}/api/top-page/byAlias/${alias}`
-  );
-  return page;
+  try {
+    const { data: page } = await axios.get<TopPageModel>(
+      `${process.env.NEXT_PUBLIC_DOMAIN}/api/top-page/byAlias/${alias}`
+    );
+    return page;
+  } catch (error) {
+    return null;
+  }
 };
 
 export const getProducts = async (category: string) => {

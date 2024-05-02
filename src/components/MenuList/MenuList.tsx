@@ -1,22 +1,39 @@
+'use client';
+
 import { FirstLevelMenuItem } from '@/interfaces/topPage.interface';
-import { getData } from '@/utils/Api/ApiRequests';
 import styles from './MenuList.module.scss';
 import Link from 'next/link';
 import { classNames } from '@/utils/classnames/classnames';
-import { IPage } from '@/interfaces/menu.interface';
-import { FirstLevelMenu } from './firstLevelMenu';
+import { IMenu, IPage } from '@/interfaces/menu.interface';
+import { FirstLevelMenu } from '@/utils/firstLevelMenu/firstLevelMenu';
+import { usePathname } from 'next/navigation';
+import { useState } from 'react';
 
 interface MenuListProps {
-  url: string;
+  firstCategory: number;
+  menu: IMenu[];
 }
 
-export const MenuList = async (props: MenuListProps) => {
-  const { url } = props;
+export default function MenuList(props: MenuListProps) {
+  const { firstCategory, menu } = props;
+  const path = usePathname();
+  const [newMenu, setNewMenu] = useState<IMenu[]>(menu);
 
-  const {
-    props: { firstCategory, menu },
-  } = await getData(0);
+  const url = path.split('/')[2];
 
+  const openSecondLevel = (secondCategory: string) => {
+    const newMenu = menu.map((m) => {
+      if (m._id.secondCategory && m._id.secondCategory === secondCategory) {
+        m.isOpened = !m.isOpened;
+        console.log(m.isOpened);
+        console.log(secondCategory);
+
+        return m;
+      }
+    });
+
+    setNewMenu(newMenu as IMenu[]);
+  };
   const buildFirstLevel = () => {
     return (
       <>
@@ -46,28 +63,31 @@ export const MenuList = async (props: MenuListProps) => {
   const buildSecondLevel = (menuItem: FirstLevelMenuItem) => {
     return (
       <div className={styles.secondBlock}>
-        {menu.map((m) => {
-          if (m.pages.map((p) => p.alias).includes(url)) {
-            m.isOpened = true;
-          }
-
-          return (
-            <div key={m._id.secondCategory}>
-              <div className={styles.secondLevel}>{m._id.secondCategory}</div>
-              <div
-                className={classNames(
-                  styles.secondLevelBlock,
-                  {
-                    [styles.secondLevelBlockOpened]: m.isOpened === true,
-                  },
-                  []
-                )}
-              >
-                {buildThirdLevel(m.pages, menuItem.route)}
+        {menu &&
+          newMenu &&
+          menu.map((m) => {
+            return (
+              <div key={m._id.secondCategory}>
+                <div
+                  className={styles.secondLevel}
+                  onClick={() => openSecondLevel(m._id.secondCategory)}
+                >
+                  {m._id.secondCategory}
+                </div>
+                <div
+                  className={classNames(
+                    styles.secondLevelBlock,
+                    {
+                      [styles.secondLevelBlockOpened]: m.isOpened === true,
+                    },
+                    []
+                  )}
+                >
+                  {buildThirdLevel(m.pages, menuItem.route)}
+                </div>
               </div>
-            </div>
-          );
-        })}
+            );
+          })}
       </div>
     );
   };
@@ -95,4 +115,4 @@ export const MenuList = async (props: MenuListProps) => {
   };
 
   return <div className={styles.menu}>{buildFirstLevel()}</div>;
-};
+}
