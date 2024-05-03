@@ -19,7 +19,7 @@ export const getPage = async (alias: string) => {
     const { data: page } = await axios.get<TopPageModel>(
       `${process.env.NEXT_PUBLIC_DOMAIN}/api/top-page/byAlias/${alias}`
     );
-    return page;
+    return page as TopPageModel;
   } catch (error) {
     return null;
   }

@@ -1,3 +1,5 @@
+'use client';
+
 import {
   DetailedHTMLProps,
   FC,
@@ -8,7 +10,7 @@ import {
 } from 'react';
 import styles from './Rating.module.scss';
 import { classNames } from '@/utils/classnames/classnames';
-import StarIcon from '@/src/assets/Star.svg';
+import StarIcon from '@/utils/assets/Star.svg?svgr';
 
 interface RatingProps
   extends DetailedHTMLProps<

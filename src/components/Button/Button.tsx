@@ -1,8 +1,7 @@
 import { classNames } from '@/utils/classnames/classnames';
 import { DetailedHTMLProps, FC } from 'react';
 import styles from './Button.module.scss';
-import ArrowIcon from '@/src/assets/Arrow.svg';
-import Image from 'next/image';
+import ArrowIcon from '@/utils/assets/Arrow.svg?svgr';
 
 interface ButtonProps
   extends DetailedHTMLProps<

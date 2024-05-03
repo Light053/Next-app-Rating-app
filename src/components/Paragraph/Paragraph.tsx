@@ -25,11 +25,11 @@ export const Paragraph: FC<ParagraphProps> = ({
   };
 
   return (
-    <p
+    <div
       className={classNames(styles.Paragraph, mods, [className || ''])}
       {...otherProps}
     >
       {children}
-    </p>
+    </div>
   );
 };

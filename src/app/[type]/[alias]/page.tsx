@@ -4,10 +4,14 @@ import { TopPageModel } from '@/interfaces/topPage.interface';
 import { getCourses, getData } from '@/utils/Api/ApiRequests';
 import { FirstLevelMenu } from '@/utils/firstLevelMenu/firstLevelMenu';
 import { validationAlias } from '@/utils/validations/validationAlias';
+import { notFound } from 'next/navigation';
+import { getProductByAlias } from '../helpers/helper';
+import { TopPageComponent } from '@/src/components/pagesComponents/topPageComponent/TopPageComponent';
 
 interface CoursesProps {
   params: {
     alias: string;
+    type: string;
     menu: IMenu[];
     products: ProductModel[];
     page: TopPageModel;
@@ -34,8 +38,22 @@ export async function generateStaticParams() {
 }
 
 export default async function AliasPage({ params }: CoursesProps) {
-  const { alias } = params;
-  const isExist = await validationAlias(alias);
+  const { alias, type } = params;
+  await validationAlias(alias);
+  const firstCategoryItem = FirstLevelMenu.find((m) => m.route === type);
+  const { page, products } = await getProductByAlias(alias);
 
-  return <div>{alias}</div>;
+  if (!firstCategoryItem) {
+    return notFound();
+  }
+
+  return (
+    <div>
+      <TopPageComponent
+        firstCategory={firstCategoryItem.id}
+        page={page as TopPageModel}
+        products={products}
+      />
+    </div>
+  );
 }

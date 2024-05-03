@@ -2,9 +2,8 @@ import { Noto_Sans } from 'next/font/google';
 import './globals.css';
 import { Metadata } from 'next';
 import { Header } from '../components/Header/Header';
-import { Footer } from '../components/Footer/Footer';
-import { Sidebar } from '../components/Sidebar/Sidebar';
 import styles from './page.module.scss';
+import { Footer, Sidebar } from '../components';
 
 const notoSans = Noto_Sans({
   weight: ['300', '400', '700', '500'],

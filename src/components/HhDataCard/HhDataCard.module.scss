@@ -1,0 +1,84 @@
+.wrapper {
+  display: grid;
+  grid-template-columns: 1fr 3fr;
+  gap: 30px;
+}
+
+.hhCount {
+  padding: 20px;
+  text-align: center;
+}
+
+.hhSalary {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  padding: 20px;
+  text-align: center;
+  gap: 20px 0;
+}
+
+.hhSalary > div {
+  border-right: 1px solid var(--gray-light-color);
+}
+
+.hhSalary > div:last-child {
+  border-right: none;
+}
+
+.hhStatTitle {
+  margin-bottom: 10px;
+  color: #3b434e;
+
+  font-size: 20px;
+  font-weight: 300;
+  line-height: 27px;
+}
+
+.hhStatCount {
+  color: var(--primary-color);
+
+  font-size: 36px;
+  font-weight: bold;
+  line-height: 49px;
+}
+
+.hhSalaryValue {
+  margin-bottom: 10px;
+
+  font-size: 26px;
+  font-weight: bold;
+  line-height: 35px;
+}
+
+.rate {
+  display: grid;
+  grid-template-columns: repeat(3, 20px);
+  gap: 10px;
+
+  justify-content: center;
+}
+
+@media screen and (max-width: 1200px) {
+  .wrapper {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media screen and (max-width: 640px) {
+  .hhSalary {
+    grid-template-columns: 1fr;
+  }
+
+  .hhSalary > div {
+    padding-bottom: 20px;
+
+    border-right: none;
+    border-bottom: 1px solid var(--gray-light-color);
+  }
+
+  .hhSalary > div:last-child {
+    padding-bottom: 0;
+
+    border-bottom: none;
+  }
+}

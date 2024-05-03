@@ -25,9 +25,6 @@ export default function MenuList(props: MenuListProps) {
     const newMenu = menu.map((m) => {
       if (m._id.secondCategory && m._id.secondCategory === secondCategory) {
         m.isOpened = !m.isOpened;
-        console.log(m.isOpened);
-        console.log(secondCategory);
-
         return m;
       }
     });
@@ -39,7 +36,7 @@ export default function MenuList(props: MenuListProps) {
       <>
         {FirstLevelMenu.map((m) => (
           <div key={m.route}>
-            <Link className={styles.firstLevelLink} href={`/${m.route}`}>
+            <Link className={styles.firstLevelLink} href={'#'}>
               <div
                 className={classNames(
                   styles.firstLevel,
