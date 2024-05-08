@@ -5,6 +5,7 @@ import MenuList from '../MenuList/MenuList';
 import { getData } from '@/utils/Api/ApiRequests';
 import OwlLogo from '@/utils/assets/OwlLogo.svg?svgr';
 import Link from 'next/link';
+import { Search } from '../Search/Search';
 
 interface SidebarProps {
   className?: string;
@@ -25,7 +26,7 @@ export const Sidebar: FC<SidebarProps> = async ({
       <Link href={'/'}>
         <OwlLogo className={styles.logo} />
       </Link>
-      <div>поиск</div>
+      <Search />
       <MenuList firstCategory={firstCategory} menu={menu} />
     </div>
   );

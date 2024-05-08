@@ -1,12 +1,16 @@
+'use client';
+
 import { ProductModel } from '@/interfaces/Product.interace';
 import styles from './TopPageComponent.module.scss';
 import { TopLevelCategory, TopPageModel } from '@/interfaces/topPage.interface';
-import { FC } from 'react';
+import { FC, useReducer } from 'react';
 import { HTag } from '../../HTag/HTag';
 import { Tag } from '../../Tag/Tag';
 import { HhDataCard } from '../../HhDataCard/HhDataCard';
 import { Paragraph } from '../../Paragraph/Paragraph';
 import CheckIcon from '@/utils/assets/Check.svg?svgr';
+import { Sort, SortEnum } from '../../Sort/Sort';
+import { sortReducer } from './sort.reducer';
 
 interface TopPageProps {
   firstCategory: TopLevelCategory;
@@ -16,6 +20,17 @@ interface TopPageProps {
 
 export const TopPageComponent: FC<TopPageProps> = (props) => {
   const { firstCategory, page, products } = props;
+  const [{ products: sortedPructs, sort }, dispatchSort] = useReducer(
+    sortReducer,
+    {
+      products,
+      sort: SortEnum.Rating,
+    }
+  );
+
+  const setSort = (sort: SortEnum) => {
+    dispatchSort({ type: sort });
+  };
 
   return (
     <div className={styles.wrapper}>
@@ -24,13 +39,12 @@ export const TopPageComponent: FC<TopPageProps> = (props) => {
         <Tag color="gray" size="s">
           {products.length}
         </Tag>
-        <span>сортировка</span>
+        <Sort sort={sort} setSort={setSort} />
       </div>
 
       <div className={styles.products}>
-        {products.map((p) => (
-          <div key={p._id}>{p.title}</div>
-        ))}
+        {sortedPructs &&
+          sortedPructs.map((p) => <div key={p._id}>{p.title}</div>)}
       </div>
 
       <div className={styles.hhTitle}>
@@ -68,6 +82,12 @@ export const TopPageComponent: FC<TopPageProps> = (props) => {
           иллюстрацию культовой книги.
         </Paragraph>
       </div>
+      {page.seoText && (
+        <div
+          className={styles.seoText}
+          dangerouslySetInnerHTML={{ __html: page.seoText }}
+        ></div>
+      )}
       <div className={styles.skils}>
         <HTag tag="h2" className={styles.skilsTitle}>
           Получаемые навыки

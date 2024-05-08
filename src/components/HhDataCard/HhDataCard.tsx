@@ -11,8 +11,14 @@ interface CardProps extends HhData {
 }
 
 export const HhDataCard = (props: CardProps) => {
-  const { count, juniorSalary, middleSalary, seniorSalary, ...otherProps } =
-    props;
+  const {
+    count,
+    juniorSalary,
+    middleSalary,
+    seniorSalary,
+    updatedAt,
+    ...otherProps
+  } = props;
 
   return (
     <div className={styles.wrapper} {...otherProps}>
