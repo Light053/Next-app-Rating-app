@@ -1,0 +1,77 @@
+.ReviewForm {
+  font-size: 14px;
+  line-height: 24px;
+  display: grid;
+  grid-template-columns: [start] auto 1fr auto [end];
+  gap: 20px 30px;
+  align-items: center;
+}
+
+.description,
+.submit {
+  grid-column: start / end;
+}
+
+.submit {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  justify-items: left;
+  margin-bottom: 20px;
+
+  span {
+    align-self: center;
+  }
+
+  button {
+    max-height: 35px;
+  }
+}
+
+.info {
+  margin-left: 15px;
+}
+
+.rating {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 20px;
+}
+
+.success {
+  background: #c8f8e4;
+  padding: 20px;
+  border-radius: 5px;
+  position: relative;
+
+  .close {
+    cursor: pointer;
+    position: absolute;
+    right: 20px;
+    top: 20px;
+  }
+
+  .successTitle {
+    margin-bottom: 10px;
+    font-weight: bold;
+  }
+}
+
+@media screen and (max-width: 1100px) {
+  .ReviewForm {
+    grid-template-columns: [start] 1fr 1fr [end];
+  }
+
+  .rating {
+    grid-column: start / end;
+  }
+
+  .titleInput {
+    justify-self: normal;
+  }
+}
+
+@media screen and (max-width: 640px) {
+  .ReviewForm {
+    grid-template-columns: [start] 1fr [end];
+  }
+}

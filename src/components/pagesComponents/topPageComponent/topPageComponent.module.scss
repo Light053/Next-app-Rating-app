@@ -10,6 +10,7 @@
 }
 
 .hhTitle {
+  margin-top: 40px;
   display: grid;
   grid-template-columns: auto 1fr;
   align-items: baseline;
@@ -80,4 +81,10 @@
   font-size: 10px;
   line-height: 27px;
   margin: 0;
+}
+
+@media (max-width: 640px) {
+  .title {
+    grid-template-columns: auto 1fr;
+  }
 }

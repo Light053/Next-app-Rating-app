@@ -21,6 +21,7 @@ export interface ProductModel {
   reviews: ReviewModal[];
   reviewCount: number;
   reviewAvg?: number;
+  disadventages?: string;
 }
 
 export interface ProductsCharacteristic {

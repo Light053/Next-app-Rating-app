@@ -11,6 +11,7 @@ import { Paragraph } from '../../Paragraph/Paragraph';
 import CheckIcon from '@/utils/assets/Check.svg?svgr';
 import { Sort, SortEnum } from '../../Sort/Sort';
 import { sortReducer } from './sort.reducer';
+import { Product } from '../../Product/Product';
 
 interface TopPageProps {
   firstCategory: TopLevelCategory;
@@ -35,7 +36,7 @@ export const TopPageComponent: FC<TopPageProps> = (props) => {
   return (
     <div className={styles.wrapper}>
       <div className={styles.title}>
-        <HTag tag="h1">{page.title}</HTag>
+        <HTag tag="h1" className={styles.Pagetitle}>{page.title}</HTag>
         <Tag color="gray" size="s">
           {products.length}
         </Tag>
@@ -44,7 +45,7 @@ export const TopPageComponent: FC<TopPageProps> = (props) => {
 
       <div className={styles.products}>
         {sortedPructs &&
-          sortedPructs.map((p) => <div key={p._id}>{p.title}</div>)}
+          sortedPructs.map((p) => <Product key={p._id} product={p} />)}
       </div>
 
       <div className={styles.hhTitle}>

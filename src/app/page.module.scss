@@ -28,9 +28,9 @@
   display: none;
 }
 
-@media (max-width: 765px) {
+@media (max-width: 800px) {
   .sidebar {
-    display: none;
+    display: none !important;
   }
   .header {
     display: block;
