@@ -9,3 +9,18 @@
 .ediable {
   cursor: pointer;
 }
+
+.error svg {
+  stroke: var(--red-color);
+}
+
+.errorMessage {
+  color: var(--red-color);
+  position: absolute;
+  bottom: -20px;
+  left: 0;
+}
+
+.wrapper {
+  position: relative;
+}

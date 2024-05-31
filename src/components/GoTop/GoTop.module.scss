@@ -1,0 +1,18 @@
+.icon {
+  background-color: var(--primary-color);
+  width: 40px;
+  height: 40px;
+  border-radius: 10px 0px 0px 0px;
+  box-shadow: 0px 4px 4px 0px #0000000d;
+  bottom: 100px;
+  right: 30px;
+  position: fixed;
+  cursor: pointer;
+  z-index: 100;
+  border: none;
+
+  &:hover {
+    background-color: var(--primary-hover-color);
+    opacity: 1 !important;
+  }
+}

@@ -3,7 +3,8 @@ import './globals.css';
 import { Metadata } from 'next';
 import { Header } from '../components/Header/Header';
 import styles from './page.module.scss';
-import { Footer, Sidebar } from '../components';
+import { Footer, GoTop, Sidebar } from '../components';
+import { ButtonIcon } from '../components/ButtonIcon/ButtonIcon';
 
 const notoSans = Noto_Sans({
   weight: ['300', '400', '700', '500'],
@@ -27,6 +28,7 @@ export default function RootLayout({
           <Sidebar className={styles.sidebar} />
           <div className={styles.body}>{children}</div>
           <Footer className={styles.footer} />
+          <ButtonIcon icon="up" />
         </div>
       </body>
     </html>

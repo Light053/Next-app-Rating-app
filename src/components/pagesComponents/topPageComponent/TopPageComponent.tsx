@@ -12,6 +12,7 @@ import CheckIcon from '@/utils/assets/Check.svg?svgr';
 import { Sort, SortEnum } from '../../Sort/Sort';
 import { sortReducer } from './sort.reducer';
 import { Product } from '../../Product/Product';
+import { useScrollY } from '@/utils/hooks/useScrollY';
 
 interface TopPageProps {
   firstCategory: TopLevelCategory;
@@ -28,6 +29,7 @@ export const TopPageComponent: FC<TopPageProps> = (props) => {
       sort: SortEnum.Rating,
     }
   );
+  const scrollY = useScrollY();
 
   const setSort = (sort: SortEnum) => {
     dispatchSort({ type: sort });
@@ -36,7 +38,9 @@ export const TopPageComponent: FC<TopPageProps> = (props) => {
   return (
     <div className={styles.wrapper}>
       <div className={styles.title}>
-        <HTag tag="h1" className={styles.Pagetitle}>{page.title}</HTag>
+        <HTag tag="h1" className={styles.Pagetitle}>
+          {page.title}
+        </HTag>
         <Tag color="gray" size="s">
           {products.length}
         </Tag>
@@ -45,7 +49,7 @@ export const TopPageComponent: FC<TopPageProps> = (props) => {
 
       <div className={styles.products}>
         {sortedPructs &&
-          sortedPructs.map((p) => <Product key={p._id} product={p} />)}
+          sortedPructs.map((p) => <Product layout key={p._id} product={p} />)}
       </div>
 
       <div className={styles.hhTitle}>
@@ -65,7 +69,11 @@ export const TopPageComponent: FC<TopPageProps> = (props) => {
             {page.advantages.map((advantage) => (
               <div key={advantage._id} className={styles.advantage}>
                 <CheckIcon />
-                <Paragraph size="m" className={styles.paragraph}>
+                <Paragraph
+                  size="m"
+                  className={styles.paragraph}
+                  key={advantage.title}
+                >
                   <div className={styles.advantageTitle}>{advantage.title}</div>
                   <div className={styles.advantageDescription}>
                     {advantage.description}

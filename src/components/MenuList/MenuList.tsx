@@ -8,6 +8,7 @@ import { IMenu, IPage } from '@/interfaces/menu.interface';
 import { FirstLevelMenu } from '@/utils/firstLevelMenu/firstLevelMenu';
 import { usePathname } from 'next/navigation';
 import { useState } from 'react';
+import { motion } from 'framer-motion';
 
 interface MenuListProps {
   firstCategory: number;
@@ -20,6 +21,30 @@ export default function MenuList(props: MenuListProps) {
   const [newMenu, setNewMenu] = useState<IMenu[]>(menu);
 
   const url = path.split('/')[2];
+
+  const variants = {
+    visible: {
+      marginBottom: 15,
+      transition: {
+        when: 'beforeChildren',
+        staggerChildren: 0.1,
+      },
+    },
+    hidden: {
+      marginBottom: 0,
+    },
+  };
+
+  const variantsChildren = {
+    visible: {
+      opacity: 1,
+      height: '29px',
+    },
+    hidden: {
+      opacity: 0,
+      height: '0px',
+    },
+  };
 
   const openSecondLevel = (secondCategory: string) => {
     const newMenu = menu.map((m) => {
@@ -36,7 +61,7 @@ export default function MenuList(props: MenuListProps) {
       <>
         {FirstLevelMenu.map((m) => (
           <div key={m.route}>
-            <Link className={styles.firstLevelLink} href={'#'}>
+            <Link className={styles.firstLevelLink} href={'#'} key={m.route}>
               <div
                 className={classNames(
                   styles.firstLevel,
@@ -71,17 +96,15 @@ export default function MenuList(props: MenuListProps) {
                 >
                   {m._id.secondCategory}
                 </div>
-                <div
-                  className={classNames(
-                    styles.secondLevelBlock,
-                    {
-                      [styles.secondLevelBlockOpened]: m.isOpened === true,
-                    },
-                    []
-                  )}
+                <motion.div
+                  layout
+                  variants={variants}
+                  initial={m.isOpened ? 'visible' : 'hidden'}
+                  animate={m.isOpened ? 'visible' : 'hidden'}
+                  className={classNames(styles.secondLevelBlock, {}, [])}
                 >
                   {buildThirdLevel(m.pages, menuItem.route)}
-                </div>
+                </motion.div>
               </div>
             );
           })}
@@ -93,19 +116,25 @@ export default function MenuList(props: MenuListProps) {
     return (
       <>
         {pages.map((p) => (
-          <Link
-            href={`/${route}/${p.alias}`}
-            className={classNames(
-              styles.thirdLevel,
-              {
-                [styles.thirdLevelActive]: `/${p.alias}` === `/${url}`,
-              },
-              []
-            )}
+          <motion.div
             key={p._id}
+            className={styles.thirdLevel}
+            variants={variantsChildren}
           >
-            {p.alias}
-          </Link>
+            <Link
+              href={`/${route}/${p.alias}`}
+              className={classNames(
+                styles.thirdLevel,
+                {
+                  [styles.thirdLevelActive]: `/${p.alias}` === `/${url}`,
+                },
+                []
+              )}
+              key={p._id}
+            >
+              {p.alias}
+            </Link>
+          </motion.div>
         ))}
       </>
     );

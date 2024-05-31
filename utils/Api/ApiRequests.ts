@@ -3,21 +3,19 @@ import { IMenu } from '@/interfaces/menu.interface';
 import { TopPageModel } from '@/interfaces/topPage.interface';
 import axios from 'axios';
 import { notFound } from 'next/navigation';
+import { ApiPaths } from './ApiPaths';
 
 export const getMenu = async (firstCategory = 0) => {
-  const { data: menu } = await axios.post<IMenu[]>(
-    `${process.env.NEXT_PUBLIC_DOMAIN}/api/top-page/find`,
-    {
-      firstCategory: firstCategory,
-    }
-  );
+  const { data: menu } = await axios.post<IMenu[]>(`${ApiPaths.topPage.find}`, {
+    firstCategory: firstCategory,
+  });
   return menu;
 };
 
 export const getPage = async (alias: string) => {
   try {
     const { data: page } = await axios.get<TopPageModel>(
-      `${process.env.NEXT_PUBLIC_DOMAIN}/api/top-page/byAlias/${alias}`
+      `${ApiPaths.product.get}${alias}`
     );
     return page as TopPageModel;
   } catch (error) {
@@ -27,7 +25,7 @@ export const getPage = async (alias: string) => {
 
 export const getProducts = async (category: string) => {
   const { data: products } = await axios.post<ProductModel[]>(
-    `${process.env.NEXT_PUBLIC_DOMAIN}/api/product/find`,
+    `${ApiPaths.product.find}`,
     {
       category,
       limit: 10,
@@ -58,13 +56,10 @@ export const getCourses = async (alias: string) => {
 };
 
 export async function getData(firstCategory: number) {
-  const { data: menu } = await axios.post<IMenu[]>(
-    `${process.env.NEXT_PUBLIC_DOMAIN}/api/top-page/find`,
-    {
-      firstCategory,
-      limit: 5,
-    }
-  );
+  const { data: menu } = await axios.post<IMenu[]>(`${ApiPaths.topPage.find}`, {
+    firstCategory,
+    limit: 5,
+  });
 
   return {
     props: {

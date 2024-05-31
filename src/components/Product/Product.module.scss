@@ -295,6 +295,17 @@
   }
 }
 
+.rateTitle a {
+  color: var(--primary-color);
+}
+
+.reviews {
+  padding: 30px;
+}
+
+.reviewsContainer {
+  overflow: hidden;
+}
 .closedReviews {
   overflow: hidden;
   max-height: 0px;

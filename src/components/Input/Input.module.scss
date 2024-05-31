@@ -9,3 +9,23 @@
   font-family: 'Noto Sans', sans-serif;
   font-size: 16px;
 }
+
+.error {
+  border-radius: 5px 0px 0px 0px;
+  padding: 7px 15px;
+  color: var(--white-color);
+  outline-color: var(--red-color);
+  box-shadow: 0px 4px 4px 0px #0000000d;
+  font-size: 16px;
+}
+
+.errorMessage {
+  color: var(--red-color);
+  position: absolute;
+  bottom: -20px;
+  left: 0;
+}
+
+.wrapper {
+  position: relative;
+}

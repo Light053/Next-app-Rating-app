@@ -49,7 +49,6 @@
     right: 20px;
     top: 20px;
   }
-
   .successTitle {
     margin-bottom: 10px;
     font-weight: bold;
@@ -74,4 +73,12 @@
   .ReviewForm {
     grid-template-columns: [start] 1fr [end];
   }
+}
+
+.reviewError {
+  background-color: rgb(252, 114, 114);
+}
+
+.reviewErrorClose {
+  stroke: rgb(108, 108, 108);
 }
