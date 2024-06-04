@@ -7,6 +7,7 @@ import Logo from '@/utils/assets/OwlLogo.svg?svgr';
 import { ButtonIcon } from '../ButtonIcon/ButtonIcon';
 import { motion } from 'framer-motion';
 import { Sidebar } from '../Sidebar/Sidebar';
+import { useSidebarData } from '@/utils/hooks/useSidebarData ';
 
 interface HeaderProps {
   className?: string;
@@ -14,6 +15,7 @@ interface HeaderProps {
 
 export const Header = ({ className, ...props }: HeaderProps): JSX.Element => {
   const [isOpened, setIsOpened] = useState<boolean>(false);
+  const { menu, firstCategory } = useSidebarData();
 
   const variants = {
     opened: {
@@ -50,7 +52,7 @@ export const Header = ({ className, ...props }: HeaderProps): JSX.Element => {
         initial={'closed'}
         animate={isOpened ? 'opened' : 'closed'}
       >
-        <Sidebar />
+        <Sidebar propsMenu={menu} />
         <ButtonIcon
           className={styles.menuClose}
           icon="cross"

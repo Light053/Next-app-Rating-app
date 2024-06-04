@@ -3,7 +3,7 @@ import './globals.css';
 import { Metadata } from 'next';
 import { Header } from '../components/Header/Header';
 import styles from './page.module.scss';
-import { Footer, GoTop, Sidebar } from '../components';
+import { Footer, Sidebar } from '../components';
 import { ButtonIcon } from '../components/ButtonIcon/ButtonIcon';
 
 const notoSans = Noto_Sans({
