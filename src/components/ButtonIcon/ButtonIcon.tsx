@@ -1,20 +1,28 @@
 'use client';
 
-import { FC, useEffect } from 'react';
+import { DetailedHTMLProps, FC, HTMLAttributes, useEffect } from 'react';
 import styles from './ButtonIcon.module.scss';
 import { classNames } from '@/utils/classnames/classnames';
 import Stripes from '@/utils/assets/BurgerCross.svg?svgr';
 import BurgerCross from '@/utils/assets/Stripes.svg?svgr';
 import GoTopIcon from '@/utils/assets/GoTopIcon.svg?svgr';
 import { useScrollY } from '@/utils/hooks/useScrollY';
-import { motion, useAnimation } from 'framer-motion';
+import { motion, useAnimation, MotionProps } from 'framer-motion';
 
-interface ButtonIconProps {
+interface ButtonIconProps
+  extends DetailedHTMLProps<
+    HTMLAttributes<HTMLButtonElement>,
+    HTMLButtonElement
+  > {
   className?: string;
   icon: 'up' | 'cross' | 'stripes';
 }
 
-export const ButtonIcon: FC<ButtonIconProps> = ({ className, icon }) => {
+export const ButtonIcon: FC<ButtonIconProps> = ({
+  className,
+  icon,
+  ...otherProps
+}) => {
   const scrollY = useScrollY();
   const controls = useAnimation();
 
@@ -29,44 +37,52 @@ export const ButtonIcon: FC<ButtonIconProps> = ({ className, icon }) => {
     });
   };
 
+  const motionProps: MotionProps = {
+    initial: { opacity: 0 },
+    animate: controls,
+  };
+
   if (icon === 'cross') {
     return (
-      <motion.button
+      <button
+        {...otherProps}
         className={classNames(styles.ButtonIcon, {}, [
           className || '',
           styles.CrossIcon,
         ])}
       >
         <BurgerCross />
-      </motion.button>
+      </button>
     );
   }
   if (icon === 'stripes') {
     return (
-      <motion.button
+      <button
+        {...otherProps}
         className={classNames(styles.ButtonIcon, {}, [
           styles.StripesIcon,
           className || '',
         ])}
       >
         <Stripes />
-      </motion.button>
+      </button>
     );
   }
 
   if (icon === 'up') {
     return (
-      <motion.button
+      <button
+        {...otherProps}
         onClick={scrollToTop}
-        animate={controls}
-        initial={{ opacity: 0 }}
         className={classNames(styles.UpIcon, {}, [
           styles.ButtonIcon,
           className || '',
         ])}
       >
         <GoTopIcon />
-      </motion.button>
+      </button>
     );
   }
+
+  return null; // Add this to handle the case where no valid icon is provided
 };

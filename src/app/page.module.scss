@@ -33,7 +33,7 @@
     display: none !important;
   }
   .header {
-    display: block;
+    display: grid;
   }
 
   .wrapper {
@@ -42,6 +42,8 @@
       'header'
       'body'
       'footer';
+
+    gap: 0px;
   }
 
   .body {
