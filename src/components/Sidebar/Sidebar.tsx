@@ -45,10 +45,6 @@ export const Sidebar: FC<SidebarProps> = ({
     }
   }, [propsMenu, propsFirstCategory]);
 
-  if (loading) {
-    return <div>Loading...</div>;
-  }
-
   return (
     <div
       className={classNames(styles.Sidebar, {}, [className || ''])}

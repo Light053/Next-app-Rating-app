@@ -5,6 +5,7 @@ import { Header } from '../components/Header/Header';
 import styles from './page.module.scss';
 import { Footer, Sidebar } from '../components';
 import { ButtonIcon } from '../components/ButtonIcon/ButtonIcon';
+import Script from 'next/script';
 
 const notoSans = Noto_Sans({
   weight: ['300', '400', '700', '500'],
@@ -22,6 +23,9 @@ export default function RootLayout({
 }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en">
+      <head>
+        <Script src="" strategy="afterInteractive"></Script>
+      </head>
       <body className={notoSans.className}>
         <div className={styles.wrapper}>
           <Header className={styles.header} />

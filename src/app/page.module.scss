@@ -25,7 +25,7 @@
 
 .header {
   grid-area: header;
-  display: none;
+  display: none !important;
 }
 
 @media (max-width: 800px) {
@@ -33,7 +33,7 @@
     display: none !important;
   }
   .header {
-    display: grid;
+    display: grid !important;
   }
 
   .wrapper {

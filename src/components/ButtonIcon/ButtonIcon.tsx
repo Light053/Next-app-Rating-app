@@ -1,18 +1,26 @@
 'use client';
 
-import { DetailedHTMLProps, FC, HTMLAttributes, useEffect } from 'react';
+import { ButtonHTMLAttributes, DetailedHTMLProps, FC, useEffect } from 'react';
 import styles from './ButtonIcon.module.scss';
 import { classNames } from '@/utils/classnames/classnames';
 import Stripes from '@/utils/assets/BurgerCross.svg?svgr';
 import BurgerCross from '@/utils/assets/Stripes.svg?svgr';
 import GoTopIcon from '@/utils/assets/GoTopIcon.svg?svgr';
 import { useScrollY } from '@/utils/hooks/useScrollY';
-import { motion, useAnimation, MotionProps } from 'framer-motion';
+import { motion, useAnimation, HTMLMotionProps } from 'framer-motion';
 
-interface ButtonIconProps
-  extends DetailedHTMLProps<
-    HTMLAttributes<HTMLButtonElement>,
-    HTMLButtonElement
+export interface ButtonIconProps
+  extends Omit<
+    DetailedHTMLProps<
+      ButtonHTMLAttributes<HTMLButtonElement>,
+      HTMLButtonElement
+    >,
+    | 'onAnimationStart'
+    | 'onDragStart'
+    | 'onDragStartCapture'
+    | 'onDragEnd'
+    | 'onDragEndCapture'
+    | 'onDrag'
   > {
   className?: string;
   icon: 'up' | 'cross' | 'stripes';
@@ -37,7 +45,7 @@ export const ButtonIcon: FC<ButtonIconProps> = ({
     });
   };
 
-  const motionProps: MotionProps = {
+  const motionProps: HTMLMotionProps<'button'> = {
     initial: { opacity: 0 },
     animate: controls,
   };
@@ -71,7 +79,8 @@ export const ButtonIcon: FC<ButtonIconProps> = ({
 
   if (icon === 'up') {
     return (
-      <button
+      <motion.button
+        {...motionProps}
         {...otherProps}
         onClick={scrollToTop}
         className={classNames(styles.UpIcon, {}, [
@@ -80,9 +89,9 @@ export const ButtonIcon: FC<ButtonIconProps> = ({
         ])}
       >
         <GoTopIcon />
-      </button>
+      </motion.button>
     );
   }
 
-  return null; // Add this to handle the case where no valid icon is provided
+  return null;
 };

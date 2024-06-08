@@ -18,6 +18,15 @@ interface CoursesProps {
   };
 }
 
+export async function generateMetadata({ params }: CoursesProps) {
+  const { page, products } = await getProductByAlias(params.alias);
+
+  return {
+    title: page?.metaTitle,
+    description: page?.metaDescription,
+  };
+}
+
 export async function generateStaticParams() {
   const paths: string[] = [];
 
