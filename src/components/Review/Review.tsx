@@ -13,7 +13,7 @@ interface ReviewProps
 
 export const Review: FC<ReviewProps> = (props) => {
   const {
-    review: { name, _id, createdAt, description, productId, rating, title },
+    review: { name, createdAt, description, rating, title },
     className,
     ...otherProps
   } = props;

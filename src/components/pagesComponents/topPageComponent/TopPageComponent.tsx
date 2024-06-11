@@ -12,7 +12,6 @@ import CheckIcon from '@/utils/assets/Check.svg?svgr';
 import { Sort, SortEnum } from '../../Sort/Sort';
 import { sortReducer } from './sort.reducer';
 import { Product } from '../../Product/Product';
-import { useScrollY } from '@/utils/hooks/useScrollY';
 
 interface TopPageProps {
   firstCategory: TopLevelCategory;
@@ -21,7 +20,7 @@ interface TopPageProps {
 }
 
 export const TopPageComponent: FC<TopPageProps> = (props) => {
-  const { firstCategory, page, products } = props;
+  const { page, products } = props;
   const [{ products: sortedPructs, sort }, dispatchSort] = useReducer(
     sortReducer,
     {
@@ -29,7 +28,6 @@ export const TopPageComponent: FC<TopPageProps> = (props) => {
       sort: SortEnum.Rating,
     }
   );
-  const scrollY = useScrollY();
 
   const setSort = (sort: SortEnum) => {
     dispatchSort({ type: sort });

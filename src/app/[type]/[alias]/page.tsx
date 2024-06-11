@@ -1,7 +1,7 @@
 import { ProductModel } from '@/interfaces/Product.interace';
 import { IMenu } from '@/interfaces/menu.interface';
 import { TopPageModel } from '@/interfaces/topPage.interface';
-import { getCourses, getData } from '@/utils/Api/ApiRequests';
+import { getData } from '@/utils/Api/ApiRequests';
 import { FirstLevelMenu } from '@/utils/firstLevelMenu/firstLevelMenu';
 import { validationAlias } from '@/utils/validations/validationAlias';
 import { notFound } from 'next/navigation';

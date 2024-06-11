@@ -41,7 +41,7 @@ export const Product = motion(
       const [isPreviewOpened, setIsPreviewOpened] = useState<boolean>(false);
 
       return (
-        <div ref={ref}>
+        <div ref={ref} {...otherProps}>
           <Card className={classNames(styles.Product, {}, [])}>
             <div className={styles.logo}>
               <Image

@@ -1,6 +1,6 @@
 'use client';
 
-import { FC, useState } from 'react';
+import { useState } from 'react';
 import styles from './Header.module.scss';
 import { classNames } from '@/utils/classnames/classnames';
 import Logo from '@/utils/assets/OwlLogo.svg?svgr';

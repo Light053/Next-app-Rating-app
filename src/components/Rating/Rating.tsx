@@ -15,7 +15,6 @@ import styles from './Rating.module.scss';
 import { classNames } from '@/utils/classnames/classnames';
 import StarIcon from '@/utils/assets/Star.svg?svgr';
 import { FieldError } from 'react-hook-form';
-import { defaultOverrides } from 'next/dist/server/require-hook';
 
 interface RatingProps
   extends DetailedHTMLProps<
