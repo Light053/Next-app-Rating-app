@@ -1,7 +1,7 @@
 'use client';
 
 import { ProductModel } from '@/interfaces/Product.interace';
-import styles from './TopPageComponent.module.scss';
+import styles from './topPageComponent.module.scss';
 import { TopLevelCategory, TopPageModel } from '@/interfaces/topPage.interface';
 import { FC, useReducer } from 'react';
 import { HTag } from '../../HTag/HTag';
