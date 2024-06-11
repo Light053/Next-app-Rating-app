@@ -12,8 +12,7 @@ export default function Home() {
 
   return (
     <div className={classNames(styles.page, {}, [])}>
-      <Input placeholder="test" />
-      <TextArea />
+      Выберите интересующий вас курс в сайдбаре
     </div>
   );
 }
